@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659757104976",
+    "firebase_url": "https://besuccessfulapp.firebaseio.com",
+    "project_id": "besuccessfulapp",
+    "storage_bucket": "besuccessfulapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659757104976:android:2e44f5c9c5cc7764cff655",
+        "android_client_info": {
+          "package_name": "com.besuccessfulandactive.besuccessful"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659757104976-alo16v218hu5rhf9ker6gu14v0as7dhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1o4-y0RUYjR1GlERR90ENVDHQWClH2y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659757104976-alo16v218hu5rhf9ker6gu14v0as7dhk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "659757104976-6kttrgkqec640k662jnfafeg8n4ta7av.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.besuccessfulandactive.besuccessful"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
