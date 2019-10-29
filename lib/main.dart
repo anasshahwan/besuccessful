@@ -1,3 +1,4 @@
+import 'package:besuccessful/Screens/DisplayQoutes.dart';
 import 'package:besuccessful/Screens/FavoriteQuote.dart';
 import 'package:besuccessful/Screens/LoadingScreen.dart';
 import 'package:besuccessful/Screens/QODScreen.dart';
@@ -11,13 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: SplashScreen.id,
+      initialRoute: LoadingScreen .id,
       routes: {
 
         LoadingScreen.id:(context)=>LoadingScreen(),
         QODScreen.id:(context)=>QODScreen(),
         FavoriteQuote.id:(context)=>FavoriteQuote(),
         QouteCategories.id : (context) =>QouteCategories(),
+        DisplayQoutes.id:(context)=>DisplayQoutes(),
       },
 
       title: 'Flutter Demo',

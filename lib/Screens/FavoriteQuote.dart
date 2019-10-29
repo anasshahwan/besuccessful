@@ -1,4 +1,5 @@
 
+import 'package:besuccessful/Screens/QODScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,17 +36,25 @@ class _FavoriteQuoteState extends State<FavoriteQuote> {
     var data = _Read();
 
 
-    return Scaffold(body:
-        ListView.builder(
-        padding: const EdgeInsets.all(8),
-    itemCount: 1,
-    itemBuilder: (BuildContext context, int index) {
-    return Container(
-    height: 50,
-    child: Center(child: Text('$myStringList')),
-    );
-    }
-    ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(body:
+          ListView.builder(
+          padding: const EdgeInsets.all(8),
+      itemCount: 1,
+      itemBuilder: (BuildContext context, int index) {
+      return GestureDetector(
+        onTap: (){
+          Navigator.pushNamed(context, QODScreen.id);
+        },
+        child: Container(
+        height: 50,
+        child: Center(child: Text('$myStringList')),
+        ),
+      );
+      }
+      ),
+      ),
     );
   }
 }

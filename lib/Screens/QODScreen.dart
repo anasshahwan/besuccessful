@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:besuccessful/Screens/DisplayQoutes.dart';
 import 'package:besuccessful/Screens/FavoriteQuote.dart';
 import 'package:besuccessful/Screens/QouteCategories.dart';
+import 'package:besuccessful/Screens/QuoteTopics.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'QODScreen.dart';
@@ -63,7 +65,7 @@ class _QODScreenState extends State<QODScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getQOD(widget.quoteData);
+   // getQOD(widget.quoteData);
     firebaseCloudMessaging_Listeners();
 
     FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-3275534231839381~3938082109');
@@ -146,104 +148,100 @@ print(myArray);
 
 
 
- static final List<String> _listViewData = [
-   "Inducesmile.com",
-   "Flutter Dev",
-   "Android Dev",
-   "iOS Dev!",
-   "React Native Dev!",
-   "React Dev!",
-   "express Dev!",
-   "Laravel Dev!",
-   "Angular Dev!",
- ];
+
+
 
   @override
   Widget build(BuildContext context) {
+
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
     Size size = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          drawer: SizedBox(
-            width: size.width,
-            child: Drawer(
-              child: Container(
-                child: ListView(
-                  padding: EdgeInsets.all(10.0),
-                  children: _listViewData
-                      .map((data) => ListTile(
-                    title: Text(data),
-                  ))
-                      .toList(),
-                ),
-              ),
-            ),
-          ),
-          appBar: AppBar(
-            title: const Text('Qoute Of The Day',style: TextStyle(color: Colors.black),),
-            backgroundColor: Color(0xFFFFFFFF),
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+
+            backgroundColor: Colors.transparent,
+            key: _scaffoldKey,
+            appBar: AppBar(
+              title: const Text('Qoute Of The Day',style: TextStyle(color: Colors.black),),
+              backgroundColor: Color(0xFFFFFFFF),
 elevation: 0.0,
 centerTitle: true,
 
-            actions: [
-              ButtonIcon(iconUrl: 'assets/images/notificationIcon.png'
-                ,onPress: (){
-                  print("notificaation");
-                },),
-              ButtonIcon(iconUrl: 'assets/images/favoritelistIcon.png'
-                ,onPress: (){
-                  print("list");
-                  Navigator.pushNamed(context, FavoriteQuote.id);
-                },),
-            ],
-          ),
+              actions: [
+                ButtonIcon(iconUrl: 'assets/images/notificationIcon.png'
+                  ,onPress: (){
+                    Navigator.of(context).push(PageRouteBuilder(
+                        opaque: false,
+                        pageBuilder: (BuildContext context, _, __) =>
+                            DisplayQoutes()));
+                    print("notificaation");
+                  },),
+                ButtonIcon(iconUrl: 'assets/images/favoritelistIcon.png'
+                  ,onPress: (){
+                    print("list");
+                    Navigator.pushNamed(context, FavoriteQuote.id);
+                  },),
+              ], leading:  ButtonIcon(iconUrl: 'assets/images/menuIcon.png'
+              ,onPress: (){
+                Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (BuildContext context, _, __) =>
+                        QuoteTopics()));
+
+               },),
+            ),
 
 
-        body: Column(
-          children: <Widget>[
-              Expanded(child: Center(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+          body: Column(
+            children: <Widget>[
+                Expanded(child: Center(child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
 
-                  Text(
-                  "$quoteText",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',fontSize: 25,fontWeight: FontWeight.bold),),
-                  SizedBox(height: 20,),
-                  Text(
-                    "--$quoteAuthor",
+                    Text(
+                    "$quoteText",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontFamily: 'OpenSans',fontSize: 15,fontWeight: FontWeight.bold),),
+                      fontFamily: 'OpenSans',fontSize: 25,fontWeight: FontWeight.bold),),
+                    SizedBox(height: 20,),
+                    Text(
+                      "--$quoteAuthor",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'OpenSans',fontSize: 15,fontWeight: FontWeight.bold),),
 
 
 
-                ],
-              ))),
+                  ],
+                ))),
 Container(
 
   padding: const EdgeInsets.all(15.0),
   child:   Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-       ButtonIcon(iconUrl: 'assets/images/shareIcon.png'
-         ,onPress: () async {
-           final prefs = await SharedPreferences.getInstance();
-           prefs.remove('my_quotes_list_key');
+         ButtonIcon(iconUrl: 'assets/images/shareIcon.png'
+           ,onPress: () async {
+             final prefs = await SharedPreferences.getInstance();
+             prefs.remove('my_quotes_list_key');
 
-           Share.share("Share Some Text");
-       },),
-       ButtonIcon(iconUrl: 'assets/images/heartIcon.png'
-        ,onPress: _save,),
+             Share.share("Share Some Text");
+         },),
+         ButtonIcon(iconUrl: 'assets/images/heartIcon.png'
+          ,onPress: _save,),
 
     ],),
 )
 
-          ],
-        )
+            ],
+          )
+        ),
       ),
     );
   }
 }
+
