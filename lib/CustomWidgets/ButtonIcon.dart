@@ -10,12 +10,12 @@ class ButtonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 20,
-      minWidth: 20,
+      height: 25,
+      minWidth: 25,
       onPressed: onPress,
       child: Container(
-        height: 20,
-        width: 20,
+        height: 25,
+        width: 25,
         child: DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
